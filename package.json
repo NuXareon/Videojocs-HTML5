@@ -1,0 +1,22 @@
+{
+  "name": "Videojocs-HTML5",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NuXareon/Videojocs-HTML5.git"
+  },
+  "author": "Albert Millas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NuXareon/Videojocs-HTML5/issues"
+  },
+  "homepage": "https://github.com/NuXareon/Videojocs-HTML5",
+  "dependencies": {
+    "socket.io": "~0.9.16"
+  }
+}
