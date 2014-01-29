@@ -3,13 +3,45 @@
 	<script src="socket.io.min.js"></script>
 </head>
 <body>
+
+	<div id="messages">
+	</div>
+
+	<div id="inputText">
+		<textarea id="inputTextarea"></textarea>
+	</div>
+
 	<script>
 
 	var serverURL = "http://localhost:4242";
-	var socket = io.connect(serverURL)
+	var socket = io.connect(serverURL);
+
+	var username = prompt("Username:") || "Anonymouse";
+
+	function sendMessage(data) { // {username,message}
+		socket.emit('sendMessage', {username:data.username, message:data.message});
+	}
 
 	socket.on('connect', function () {
-		console.log('Im in');
+		sendMessage({username:username,message:"Hello biches!"});
 	});
+
+	socket.on('printMessage', function (data) {
+		var div = document.createElement('div');
+
+		var s = '<p><span>'+data.username+':</span> '+data.message+'</p>';
+		div.innerHTML = s;
+
+		messages.appendChild(div);
+	});
+
+	document.addEventListener('keydown', function (e) {
+		if (e.keyCode == 13) {
+			var input = document.getElementById("inputTextarea").value.trim();
+			document.getElementById("inputTextarea").value = "";
+			sendMessage({username:username,message:input});
+		}
+	});
+
 	</script>
 </body>
